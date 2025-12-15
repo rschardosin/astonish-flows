@@ -1,12 +1,12 @@
-# Astonish Official Flows Store 🔮
+# Astonish Alternative Flows Store 🔮
 
-Curated collection of AI automation flows for [Astonish](https://github.com/schardosin/astonish).
+Collection of AI automation flows for [Astonish](https://github.com/schardosin/astonish).
 
 ## Available Flows
 
 | Flow | Description |
 |------|-------------|
-| `github_pr_description_generator` | Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis |
+| `simple_web_search_agent` | Simple Agent to Respond to User Questions with Web Search |
 
 ## Usage
 
@@ -15,10 +15,10 @@ Curated collection of AI automation flows for [Astonish](https://github.com/scha
 astonish flows store list
 
 # Install a flow
-astonish flows store install github_pr_description_generator
+astonish flows store install simple_web_search_agent
 
 # Run an installed flow
-astonish flows run github_pr_description_generator
+astonish flows run simple_web_search_agent
 ```
 
 ## Contributing
