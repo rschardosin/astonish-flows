@@ -1,0 +1,81 @@
+description: Simple Agent to Respond to User Questions with Web Search
+nodes:
+  - name: get_question
+    type: input
+    prompt: |
+      What is your question?
+    output_model:
+      user_question: str
+  - name: search_web
+    type: llm
+    system: |
+      You are a web search assistant. Your goal is to find relevant and up-to-date information to answer the user's question.
+      Use clear keywords and aim to retrieve results that would be genuinely helpful for the user.
+    prompt: |
+      Please perform a web search to find useful and recent information to answer the following question:
+
+      Question: "{user_question}"
+
+      Make sure to include credible sources and provide a variety of perspectives if relevant.
+    output_model:
+      search_results: str
+    tools: true
+    tools_selection:
+      - tavily-search
+  - name: process_result
+    type: llm
+    system: |
+      Extract key info from a search result.
+    prompt: |
+      search_results:
+      {search_results}
+
+      Process the result in a format that is easy to understand. Use markdown formatting, adding headings, bullet points, and code blocks where appropriate. 
+
+      Use tavily-search for the search and tavily-extract for the extraction.
+    output_model: {}
+  - name: new_question
+    type: input
+    prompt: |
+      Do you have another question?
+    output_model:
+      user_question: str
+    options:
+      - 'yes'
+      - 'no'
+flow:
+  - from: START
+    to: get_question
+  - from: get_question
+    to: search_web
+  - from: search_web
+    to: process_result
+  - from: process_result
+    to: new_question
+  - from: new_question
+    edges:
+      - to: get_question
+        condition: 'lambda x: x[''user_question''] == ''yes'''
+      - to: END
+        condition: 'lambda x: x[''user_question''] == ''no'''
+layout:
+  nodes:
+    START:
+      x: 265
+      'y': 162
+    get_question:
+      x: 221
+      'y': 312
+    search_web:
+      x: 205
+      'y': 462
+    process_result:
+      x: 12
+      'y': 12
+    new_question:
+      x: 49
+      'y': 162
+    END:
+      x: 41
+      'y': 312
+  waypoints: []

@@ -1,0 +1,7 @@
+name: rschardosin Astonish Flows
+author: rschardosin
+description: Example of external repository for astonish
+flows:
+  simple_web_search_agent:
+    description: Simple Agent to Respond to User Questions with Web Search
+    tags: [web-search, ai]
