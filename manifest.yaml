@@ -17,3 +17,12 @@ mcps:
       TAVILY_API_KEY: ""
     tags: [web-search, web-extraction]
 
+  python-sandbox:
+    description: Python Sandbo
+    command: uvx
+    args:
+      - mcp-run-python
+      - stdio
+    env:
+      TAVILY_API_KEY: ""
+    tags: [python, sandbox]
