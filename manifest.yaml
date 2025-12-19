@@ -17,7 +17,7 @@ mcps:
       TAVILY_API_KEY: ""
     tags: [web-search, web-extraction]
 
-  "Python Sandbox":
+  python-sandbox:
     description: Python Sandbo
     command: uvx
     args:
