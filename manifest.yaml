@@ -5,3 +5,14 @@ flows:
   simple_web_search_agent:
     description: Simple Agent to Respond to User Questions with Web Search
     tags: [web-search, ai]
+
+mcps:
+  tavily:
+    description: Enables real-time web search
+    command: npx
+    args:
+      - -y
+      - tavily-mcp@0.1.2
+    env:
+      TAVILY_API_KEY: ""
+    tags: [web-search, web-extraction]
