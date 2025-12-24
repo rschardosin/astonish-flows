@@ -5,6 +5,9 @@ flows:
   simple_web_search_agent:
     description: Simple Agent to Respond to User Questions with Web Search
     tags: [web-search, ai]
+  text_to_speech:
+    description: Convert text input into speech audio using AI voice synthesis
+    tags: [voice, tts]
 
 mcps:
   tavily:

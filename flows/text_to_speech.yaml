@@ -1,0 +1,51 @@
+name: text_to_speech_flow
+description: Convert text input into speech audio using AI voice synthesis
+nodes:
+  - name: get_text_input
+    type: input
+    prompt: 'Please enter the text you want to convert to speech:'
+    output_model:
+      user_text: str
+  - name: generate_speech
+    type: llm
+    system: You are a text-to-speech assistant. Use the available tools to first get the list of voices and models, then select an appropriate English voice and model to generate speech from the user's text. Choose a natural-sounding voice.
+    prompt: 'Convert this text to speech: {user_text}'
+    tools: true
+    tools_selection:
+      - get_voices
+      - get_models
+      - text_to_speech
+    output_model:
+      audio_file_path: str
+    user_message:
+      - 'Audio file created successfully at:'
+      - audio_file_path
+flow:
+  - from: START
+    to: get_text_input
+  - from: get_text_input
+    to: generate_speech
+  - from: generate_speech
+    to: END
+mcp_dependencies:
+  - server: allvoicelab-mcp
+    tools:
+      - get_voices
+      - get_models
+      - text_to_speech
+    source: tap
+layout:
+  nodes:
+    START:
+      x: 15
+      'y': 19
+    get_text_input:
+      x: 14
+      'y': 164
+    generate_speech:
+      x: 12
+      'y': 312
+    END:
+      x: 11
+      'y': 453
+  edges: {}
