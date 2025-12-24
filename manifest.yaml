@@ -26,3 +26,15 @@ mcps:
     env:
       TAVILY_API_KEY: ""
     tags: [python, sandbox]
+
+  allvoicelab-mcp:
+    description: "Official AllVoiceLab Model Context Protocol (MCP) server, supporting interaction with powerful text-to-speech and video translation APIs"
+    command: uvx
+    args:
+      - allvoicelab-mcp
+    env: 
+      ALLVOICELAB_API_DOMAIN: "https://api.allvoicelab.com"
+      ALLVOICELAB_API_KEY: ""
+      ALLVOICELAB_BASE_PATH: ""
+    tags: [voice]
+    transport: "stdio"
